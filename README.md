@@ -1,7 +1,3 @@
-+====================================================================+
-|                  High-Density Ubuntu VM Cluster                   |
-|                        3 Server Build – 1000 VMs                  |
-+====================================================================+
 
 Project Overview:
 -----------------
@@ -22,36 +18,36 @@ Objectives:
 - Demonstrate automation and monitoring in a high-density environment
 
 Hardware Configuration:
------------------------
+
 Compute (3 Servers):
-+---------------------------------------------------+
-| Server     | HPE ProLiant DL380 Gen11 (3 units)  |
-| CPU        | 2 x Intel Xeon Gold 6430 (32 cores)|
-| RAM        | 2.1 TB DDR5 per server             |
-| vCPUs      | ~333–334 (1 vCPU per VM)          |
-| VM Specs   | 1 vCPU / 4 GB RAM / 50 GB disk    |
-| NIC        | 2 x Broadcom BCM571 25Gb SFP28    |
-| Storage    | HPE P48183-B21 NVMe (boot device) |
-+---------------------------------------------------+
+
+ Server     | HPE ProLiant DL380 Gen11 (3 units)  
+ CPU        | 2 x Intel Xeon Gold 6430 (32 cores)
+ RAM        | 2.1 TB DDR5 per server             
+ vCPUs      | ~333–334 (1 vCPU per VM)          
+ VM Specs   | 1 vCPU / 4 GB RAM / 50 GB disk    
+ NIC        | 2 x Broadcom BCM571 25Gb SFP28    
+ Storage    | HPE P48183-B21 NVMe (boot device) 
+
 
 Storage:
-+---------------------------------------------------+
-| Array      | HPE Alletra 6000 Series             |
-| Capacity   | 70–100 TB (50 TB for VMs)          |
-| Connectivity| DAC to Aruba switches              |
-| Redundancy | RAID / mirroring                    |
-+---------------------------------------------------+
+
+ Array      | HPE Alletra 6000 Series             
+ Capacity   | 70–100 TB (50 TB for VMs)          
+ Connectivity| DAC to Aruba switches              
+ Redundancy | RAID / mirroring                    
+
 
 Networking:
-+---------------------------------------------------+
-| Switch     | 2 x HPE Aruba CX 8325 (448 SFP28)  |
-| Connectivity | 25 Gb DAC from server NICs       |
-| VLANs      | Separate VLANs: VM, storage, mgmt |
-| Features   | Multi-chassis LAG, failover, seg. |
-+---------------------------------------------------+
+
+ Switch     | 2 x HPE Aruba CX 8325 (448 SFP28)  
+ Connectivity | 25 Gb DAC from server NICs       
+ VLANs      | Separate VLANs: VM, storage, mgmt
+ Features   | Multi-chassis LAG, failover, seg. 
+
 
 Virtualization Layer:
---------------------
+
 - Hypervisor: VMware ESXi 8.x
 - Management: vCenter Server for HA, DRS, resource monitoring
 - Automation: PowerCLI or Ansible scripts for bulk deployment
@@ -59,46 +55,18 @@ Virtualization Layer:
 - Load Balancing: vSphere DRS distributes workloads
 
 Security & Segmentation:
-------------------------
+
 - VLAN separation for management, storage, and VM networks
 - Optional firewall segmentation for lab/testing
 - Snapshots and backup policies
 
 Monitoring & Automation:
-------------------------
+
 - Tools: vCenter performance charts, Prometheus + Grafana dashboards
 - Scripts: Bulk provisioning, snapshot management, alerts
 - Alerting: Automated notifications for CPU/RAM/storage spikes
 
-Architecture Diagram:
----------------------
-+------------------------+        +------------------------+        +------------------------+
-|        Server 1        |        |        Server 2        |        |        Server 3        |
-|  HPE DL380 Gen11       |        |  HPE DL380 Gen11       |        |  HPE DL380 Gen11       |
-|  2x Intel Xeon 6430    |        |  2x Intel Xeon 6430    |        |  2x Intel Xeon 6430    |
-|  2.1 TB RAM            |        |  2.1 TB RAM            |        |  2.1 TB RAM            |
-|  333 VMs @ 1vCPU/4GB   |        |  333 VMs @ 1vCPU/4GB   |        |  334 VMs @ 1vCPU/4GB   |
-+-----------+------------+        +-----------+------------+        +-----------+------------+
-            |                                 |                                 |
-            |                                 |                                 |
-            +---------------+-----------------+-----------------+---------------+
-                            |                                     |
-                            |                                     |
-                   +--------+--------+                   +--------+--------+
-                   |  Aruba CX 8325  |                   |  Aruba CX 8325  |
-                   |   25Gb SFP28    |                   |   25Gb SFP28    |
-                   |  Multi-Chassis  |                   |  Multi-Chassis  |
-                   |   LAG/Segmentation                   |   LAG/Segmentation
-                   +--------+--------+                   +--------+--------+
-                            |                                     |
-                            +-------------------+-----------------+
-                                                |
-                                         +------+------+
-                                         | HPE Alletra |
-                                         |  6000 Series|
-                                         |  70–100 TB  |
-                                         |  RAID/Redun |
-                                         +-------------+
+
 
 Future Improvements:
 --------------------
